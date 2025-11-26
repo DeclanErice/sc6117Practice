@@ -1,0 +1,14 @@
+# Python virtual environment (this folder itself is a venv)
+bin/
+lib/
+include/
+pyvenv.cfg
+share/
+etc/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
