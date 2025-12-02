@@ -11,3 +11,16 @@ This is the repository to track the team project for sc6117 course.
 	- Normalized OHLCV into a Pandas DataFrame with UTC timestamps, symbol, timeframe, and helper columns (`datetime`, `date`).
 	- Saved standardized K-line data to a date-stamped parquet file, e.g. `kline_ETHUSDT_1h_YYYY-MM-DD.parquet`.
 - Cleanly initialized this directory as an isolated Git repository (only tracking project files, not the whole home directory) and pushed the initial commit to GitHub at `DeclanErice/sc6117Practice`.
+
+## Progress - 2025-12-02
+
+- Built a sentiment-driven backtest notebook `Main.ipynb` that acts as both executable pipeline and project report.
+- Defined core backtest dataclasses (`BacktestConfig`, `TradeRecord`, `BacktestResult`, `BacktestOutput`, etc.) to standardize inputs/outputs across modules.
+- Implemented the full backtest pipeline in the notebook:
+	- Load standardized K-line parquet data and simulate a random sentiment time series aligned to price.
+	- Normalize and align sentiment data to price using `merge_asof` (backward direction to avoid look-ahead bias).
+	- Generate simple long/short/flat signals from sentiment thresholds and run a bar-by-bar backtest engine.
+	- Compute common performance metrics (total/annualized return, volatility, Sharpe ratio, max drawdown, win rate, trade count).
+	- Implement a buy-and-hold benchmark and a top-level `run_backtest_with_benchmark` wrapper that returns a unified `BacktestOutput`.
+	- Add a helper to transform backtest outputs into front-end friendly `dataPoints` (time, realPrice, predictionPrice, percentDifference).
+- Documented the notebook with a clear 0–11 step structure so it can be handed in as a course assignment.
